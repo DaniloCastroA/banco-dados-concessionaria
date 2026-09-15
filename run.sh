@@ -27,8 +27,7 @@ else
   exit 1
 fi
 
-# Espera o banco aceitar conexoes (o container leva alguns segundos para subir).
-echo "Aguardando o banco..."
+
 for i in $(seq 1 30); do
   run_sql "SELECT 1;" >/dev/null 2>&1 && break
   sleep 1
@@ -44,6 +43,3 @@ for f in sql/01_schema.sql sql/02_seed.sql sql/04_views.sql \
   run_file "$f"
 done
 
-echo
-echo "Pronto. Os erros de NOT NULL, chave estrangeira e WITH CHECK OPTION acima"
-echo "sao intencionais: demonstram que as restricoes do esquema estao ativas."
