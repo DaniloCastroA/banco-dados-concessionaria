@@ -57,17 +57,20 @@ um `UPDATE` que jogaria a linha para fora do filtro da própria view.
 
 ## Como rodar
 
-Com um PostgreSQL disponível:
-
-```bash
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres ./run.sh
-```
-
-Ou, via Docker:
+Via Docker, sem instalar nada além dele:
 
 ```bash
 docker run --name pg-carros -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:16
 ./run.sh
+```
+
+O script espera o banco subir e, se o cliente `psql` não estiver instalado na máquina,
+usa o que já existe dentro do container.
+
+Com um PostgreSQL próprio:
+
+```bash
+DATABASE_URL=postgresql://usuario:senha@localhost:5432/postgres ./run.sh
 ```
 
 Alguns comandos **falham de propósito** e isso faz parte da demonstração: são os testes que provam
